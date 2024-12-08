@@ -97,6 +97,44 @@ a:visited {
 	cursor: pointer;
 }
 
+.key.special {
+	grid-column: span 2;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@media (max-width: 600px) {
+  .cells {
+    width: 70vw;
+    height: calc(70vw / 5 * 6);
+  }
+
+  .cell {
+    width: calc(68vw / 5);
+    height: calc(68vw / 5);
+    padding-top: 12px;
+  }
+
+  .keyboard {
+    width: 70vw;
+  }
+
+  .key {
+    width: calc(70vw / 10);
+    font-size: 16px;
+    height: 2rem;
+    margin: 2px;
+  }
+
+  .key.special {
+    width: calc(70vw / 5 + 4px);
+    padding: 16px;
+  }
+}
+
+
 .key.dim:hover {
 	filter: none;
 }
@@ -140,14 +178,6 @@ a:visited {
 .cell.green, .key.green {
 	background-color: #02C39A;
 	color: #1D6B55;
-}
-
-.key.special {
-	grid-column: span 2;
-
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 
 .icon {
