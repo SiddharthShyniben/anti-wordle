@@ -1,7 +1,7 @@
 import { checkGuess, getAnswer } from "./guess.js";
 import { $, $$, sleep, snack, wordList } from "./util.js";
 
-const keys = $$('key');
+const keys = $$('.key');
 
 let row = 0;
 let gameover = false;
@@ -59,6 +59,11 @@ const gotKey = async key => {
           }, 1350);
         }
 
+        if (res === 'ggggg') {
+          snack("You win!")
+          return;
+        }
+
         if (row < 5) {
           row++;
         } else {
@@ -71,7 +76,9 @@ const gotKey = async key => {
 };
 
 keys.forEach(key => {
-  key.addEventListener('click', () => gotKey(key.getAttribute('data-key')));
+  key.addEventListener('click', () => {
+    gotKey(key.dataset.key)
+  });
 });
 
 document.addEventListener('keydown', event => {
