@@ -1,0 +1,250 @@
+body {
+	background-color: #1D1F25;
+	color: white;
+}
+
+nav {
+	background-color: #191919;
+	height: 70px;
+
+	font-size: 40px;
+	font-family: MonoLisa, 'Fira Code', Courier, sans-serif;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+footer {
+	background: #191919;
+	height: 150px;
+
+	font-size: 16px;
+	line-height: 30.01px;
+	font-family: 'Nunito', sans-serif;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+a {
+	color: #2599ff;
+	text-decoration: none;
+}
+
+a:focus, a:hover {
+	text-decoration: underline;
+	filter: brightness(1.2);
+}
+
+a:visited {
+	color: #76A9DA;
+}
+
+.cells {
+	display: grid;
+	/* 6x7 grid */
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: repeat(6, 1fr);
+
+	width: 390px;
+	height: 470px;
+	margin: auto;
+	margin-top: 30px;
+}
+
+.keyboard {
+	width: 550px;
+	margin: auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
+
+	display: grid;
+	grid-template-columns: repeat(10, 1fr);
+}
+
+.cell {
+	width: 70px;
+	height: 70px;
+	/* border-width: 8px; */
+	/* border-style: solid; */
+	/* border-image-slice: 1; */
+
+	text-transform: uppercase;
+	font-family: 'Nunito', sans-serif;
+	font-weight: 800;
+	font-size: 30px;
+	line-height: 40.92px;
+	text-align: center;
+	padding-top: 15px;
+	border-radius: 10px;
+}
+
+.key {
+	height: 70px;
+	color: white;
+
+	text-transform: uppercase;
+
+	font-family: 'Nunito', sans-serif;
+	font-weight: 800;
+	font-size: 30px;
+	border-radius: 10px;
+	border: none;
+	margin: 5px;
+
+	cursor: pointer;
+}
+
+.key.dim:hover {
+	filter: none;
+}
+
+.key:hover {
+	transition: filter 250ms;
+	filter: brightness(1.5);
+}
+
+.key.green:hover {
+	filter: brightness(0.5);
+}
+
+.key.yellow:hover {
+	filter: brightness(0.7);
+}
+
+.cell.dim,
+.cell:not(.black):not(.yellow):not(.green),
+.key.dim {
+	background-color: #282A3E;
+	opacity: 0.3;
+}
+
+.key.dim {
+	cursor: no-drop;
+}
+
+.key, .cell.black, .key.black {
+	/* background: linear-gradient(135deg, #2D3047 -10%, #48495F 110%); */
+	/* border-image-source: linear-gradient(135deg, #48495F -20%, #2D3047 120%); */
+	background-color: #282A3E;
+	color: #A3A3AE;
+}
+
+.cell.yellow, .key.yellow {
+	background-color: #FDD85D;
+	color: #837035;
+}
+
+.cell.green, .key.green {
+	background-color: #02C39A;
+	color: #1D6B55;
+}
+
+.key.special {
+	grid-column: span 2;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.icon {
+	height: 50px;
+}
+
+.key, .cell {
+	user-select: none;
+}
+
+#snackbar {
+	visibility: hidden;
+	min-width: 250px;
+	margin-left: -125px;
+	background-color: #1D1F25;
+	text-align: center;
+	border-radius: 2px;
+	padding: 16px;
+	position: fixed;
+	z-index: 1;
+	left: 50%;
+	bottom: 30px;
+}
+
+#snackbar.show {
+	visibility: visible;
+
+	animation: fadein 0.5s forwards;
+}
+
+#snackbar.hide {
+	animation: fadeout 0.5s forwards;
+}
+
+@keyframes fadein {
+from {bottom: 0; opacity: 0;}
+to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadeout {
+from {bottom: 30px; opacity: 1;}
+to {bottom: 0; opacity: 0;}
+}
+
+.cell.pop {
+	transition: background-color 500ms, color 500ms;
+	animation: pop 750ms;
+}
+
+.pop:nth-child(2), .pop:nth-child(9), .pop:nth-child(16), .pop:nth-child(23), .pop:nth-child(30), .pop:nth-child(37) {
+	animation-delay: 100ms;
+}
+
+.pop:nth-child(3), .pop:nth-child(10), .pop:nth-child(17), .pop:nth-child(24), .pop:nth-child(31), .pop:nth-child(38) {
+	animation-delay: 200ms;
+}
+
+.pop:nth-child(4), .pop:nth-child(11), .pop:nth-child(18), .pop:nth-child(25), .pop:nth-child(32), .pop:nth-child(39) {
+	animation-delay: 300ms;
+}
+
+.pop:nth-child(5), .pop:nth-child(12), .pop:nth-child(19), .pop:nth-child(26), .pop:nth-child(33), .pop:nth-child(40) {
+	animation-delay: 400ms;
+}
+
+.pop:nth-child(6), .pop:nth-child(13), .pop:nth-child(20), .pop:nth-child(27), .pop:nth-child(34), .pop:nth-child(41) {
+	animation-delay: 500ms;
+}
+
+.pop:nth-child(7), .pop:nth-child(14), .pop:nth-child(21), .pop:nth-child(28), .pop:nth-child(35), .pop:nth-child(42) {
+	animation-delay: 600ms;
+}
+
+@keyframes pop {
+from {
+	transform: scale3d(1, 1, 1);
+}
+
+10%,
+20% {
+	transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+}
+
+30%,
+50%,
+70%,
+90% {
+	transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+}
+
+40%,
+60%,
+80% {
+	transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+}
+
+to {
+	transform: scale3d(1, 1, 1);
+}
+}
